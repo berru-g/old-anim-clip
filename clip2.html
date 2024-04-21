@@ -1,0 +1,157 @@
+<html>
+<meta charset='UTF-8' />
+<!--animation pour clip
+obj:
+- Parallaxe d'un mec qui marche, 3 calque;
+2019 learn bru
+-->
+
+<head>
+
+<body>
+	<style>
+		html {
+			width: 100%;
+			height: 100%;
+			background-image: url("../img/Parc-Gaudiniere2.png");
+		}
+
+		.lune {
+			z-index: 3;
+			position: absolute;
+			opacity: 0.4;
+			filter: brightness(0.6);
+			width: 10%;
+			height: auto;
+			right: 40px;
+			top: 40px;
+			-webkit-animation: tourne 120s infinite;
+			-moz-animation: tourne 120s infinite;
+			animation: tourne 120s infinite;
+		}
+
+		@-webkit-keyframes tourne {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+
+				-webkit-transform: rotate(360deg);
+			}
+		}
+	</style>
+	<div style="keyframes City">
+		<img class="fond" src="img\Parc-Gaudiniere2.png" />
+	</div><!--cityx2.png--><!--jour-nuit.jpg--><!--city-wild.png= top 100px 40s / -8500px; left--><!--wild-wild.png-->
+
+	</div>
+	<style>
+		.fond {
+			background-image: linear-gradient(to top, #f58608, #f3a90a, #f88989, #203e4d, #203e4d, #250125, #000000);
+			z-index: 2;
+			opacity: 1;
+			width: 100%px;
+			height: auto;
+			position: absolute;
+			top: 0px;
+			/*-100*/
+			left: 0px;
+			animation: City 80s infinite;
+		}
+
+		@keyframes City {
+			from {
+				left: 0px;
+			}
+
+			to {
+				left: -8500px;
+				color: #2a2631;
+				/*color:#85e491;*/
+			}
+		}
+	</style>
+	<!--canva/////////////////////////////////////////////////////////////////////////////////////-120px////////////-->
+	<canvas class="myCanvas" style="z-index:1;position:fixed;width:1700px;height:1050px;bottom:-250px;">
+		<p>.</p>
+	</canvas>
+
+	<script>
+		const canvas = document.querySelector('.myCanvas');
+		const width = canvas.width = window.innerWidth;
+		const height = canvas.height = window.innerHeight;
+		const ctx = canvas.getContext('2d');
+
+		ctx.fillStyle = '#85e491';//#ac8e78 sable //##414149 route// #1b1b3f bleu nuit
+		ctx.fillRect(0, 0, width, height);
+
+
+		ctx.translate(width / 2, height / 2);
+
+		let image = new Image();
+		image.src = 'img/walk-GUITARE.png';
+		image.onload = draw;
+
+		let sprite = 0;
+		let posX = 0;
+
+		function draw() {
+			ctx.fillRect(-(width / 2), -(height / 2), width, height);//CACHE LIMAGE PRECEDENTE
+			ctx.drawImage(image, (sprite * 200), 0, 200, 148, 0 + posX, -74, 200, 148);//LARGEUR DE CHAQUE IMG SUR CA HAUTERU -	
+			//ctx.drawImage(image, (sprite * 102), 0, 102, 148, 0 + posX, -74, 102, 148);
+			//102 de base, puis 200 pour la guitare
+
+			if (posX % 30 === 0) {//frequence des pas
+				if (sprite === 5) {//fluidité=5
+					sprite = 0;
+				} else {
+					sprite++;
+				}
+			}
+
+			if (posX > width / 2) {
+				newStartPos = -((width / 2) + 200);
+				posX = Math.ceil(newStartPos);//
+				console.log(posX);
+			} else {
+				posX += 2;
+			}
+
+			window.requestAnimationFrame(draw);
+		};
+	</script>
+	<div style="keyframes footer">
+		<img class="premier-plan" src="C:\Users\glebe\Documents\PROG HTML\Projet-clip\ville-campagne.png" />
+	</div>
+	</div>
+	<style>
+		.premier-plan {
+			z-index: 4;
+			opacity: 1;
+			width: 100%;
+			height: auto;
+			position: absolute;
+			bottom: -100px;
+			left: 0px;
+			animation: footer 75s infinite;
+			opacity: 1;
+
+		}
+
+		@keyframes footer {
+			from {
+				left: 0px;
+			}
+
+			to {
+				left: -10500px;
+			}
+		}
+	</style>
+
+
+</body>
+</head>
+
+</html>
